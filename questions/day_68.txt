@@ -1,0 +1,26 @@
+#SQL Interview Question — Solution
+
+Find the number of employees who received the bonus and who didn't. Bonus values in employee table are corrupted so you should use values from the bonus table. Be aware of the fact that employee can receive more than one bonus. Output value inside has_bonus column (1 if they had bonus, 0 if not) along with the corresponding number of employees for each.
+
+🌀By solving this, you'll learn how to use Left Join, CASE, Group by. Give it a try and share the output! 👇
+
+𝐒𝐜𝐡𝐞𝐦𝐚 𝐚𝐧𝐝 𝐃𝐚𝐭𝐚𝐬𝐞𝐭
+CREATE TABLE employee_details (id BIGINT PRIMARY KEY, first_name VARCHAR(50), last_name VARCHAR(50), age BIGINT, sex VARCHAR(10), email VARCHAR(100), address VARCHAR(100), city VARCHAR(50), department VARCHAR(50), employee_title VARCHAR(50), manager_id BIGINT, salary BIGINT, target BIGINT, bonus BIGINT);
+
+INSERT INTO employee_details (id, first_name, last_name, age, sex, email, address, city, department, employee_title, manager_id, salary, target, bonus)VALUES (1, 'John', 'Doe', 30, 'Male', 'john.doe@example.com', '123 Elm St', 'New York', 'IT', 'Engineer', 101, 70000, 80000, 5000),(2, 'Jane', 'Smith', 28, 'Female', 'jane.smith@example.com', '456 Oak St', 'Los Angeles', 'HR', 'Manager', 102, 75000, 90000, NULL),(3, 'Alice', 'Johnson', 35, 'Female', 'alice.johnson@example.com', '789 Pine St', 'Chicago', 'Finance', 'Analyst', 103, 80000, 95000, NULL),(4, 'Bob', 'Brown', 40, 'Male', 'bob.brown@example.com', '321 Maple St', 'Boston', 'IT', 'Director', 104, 120000, 130000, NULL),(5, 'Charlie', 'Davis', 25, 'Male', 'charlie.davis@example.com', '654 Cedar St', 'Seattle', 'Marketing', 'Specialist', 105, 50000, 60000, NULL);
+
+CREATE TABLE bonus (worker_ref_id BIGINT, bonus_amount BIGINT, bonus_date DATETIME);
+
+INSERT INTO bonus (worker_ref_id, bonus_amount, bonus_date) VALUES (1, 5000, '2024-01-15'),(1, 3000, '2024-02-20'),(3, 2000, '2024-03-10'),(5, 1000, '2024-04-05');
+---------
+
+𝐄𝐱𝐩𝐥𝐚𝐧𝐚𝐭𝐢𝐨𝐧 𝐭𝐨 𝐒𝐨𝐥𝐯𝐞 𝐐𝐮𝐞𝐫𝐲
+1. LEFT JOIN: The bonus table is joined with the employee table on the id column from employee and worker_ref_id column from bonus. This ensures that all employees are included, even if they did not receive a bonus.
+
+2. CASE Statement: Checks if the worker_ref_id in the bonus table is not NULL: If not NULL, it indicates the employee received at least one bonus (1).
+If NULL, it means the employee did not receive any bonus (0).
+
+3. COUNT(DISTINCT e.id): Counts the distinct number of employees in each category (employees with bonuses and those without bonuses).
+
+
+Connect with me: https://topmate.io/im_nsk

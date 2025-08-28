@@ -1,0 +1,60 @@
+# Byte-compiled / optimized / DLL files
+__pycache__/
+*.py[cod]
+*$py.class
+
+# Virtual environment
+.venv/
+venv/
+env/
+ENV/
+
+# Distribution / packaging
+build/
+dist/
+*.egg-info/
+.eggs/
+
+# Logs and temp files
+*.log
+*.tmp
+*.swp
+
+# Jupyter Notebook checkpoints
+.ipynb_checkpoints/
+
+# OS files
+.DS_Store
+Thumbs.db
+
+# IDE / Editor settings
+.vscode/
+.idea/
+*.sublime-workspace
+*.sublime-project
+
+# Coverage / Testing
+.coverage
+.pytest_cache/
+htmlcov/
+
+# Environment variables
+*.env
+.env.*
+
+# Cache
+.cache/
+.mypy_cache/
+.pyre/
+.pytype/
+
+# Data files (optional — uncomment if large or generated)
+# *.csv
+# *.parquet
+# *.xlsx
+
+
+##Folders and files to ignore
+transform/
+questions/*
+!questions/*.txt
