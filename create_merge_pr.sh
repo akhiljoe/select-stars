@@ -13,7 +13,7 @@ echo "➡️  Current branch: $BRANCH"
 echo "➡️  Creating pull request from '$BRANCH' to 'main'..."
 
 RESPONSE=$(curl -s -w "\n%{http_code}" -X POST \
-  -H "Authorization: token $GITHUB_TOKEN" \
+  -H "Authorization: Bearer $GITHUB_TOKEN" \
   -H "Accept: application/vnd.github+json" \
   -d "{\"title\":\"Merge $BRANCH to main\",\"head\":\"$BRANCH\",\"base\":\"main\",\"body\":\"Automated PR from $BRANCH branch\"}" \
   https://api.github.com/repos/$REPO/pulls)
@@ -41,7 +41,7 @@ echo "✅ Pull request #$PR_NUMBER created successfully."
 echo "➡️  Merging pull request #$PR_NUMBER..."
 
 MERGE_RESPONSE=$(curl -s -w "\n%{http_code}" -X PUT \
-  -H "Authorization: token $GITHUB_TOKEN" \
+  -H "Authorization: Bearer $GITHUB_TOKEN" \
   -H "Accept: application/vnd.github+json" \
   -d '{"merge_method":"merge"}' \
   https://api.github.com/repos/$REPO/pulls/$PR_NUMBER/merge)
