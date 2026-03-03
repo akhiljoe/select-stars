@@ -1,0 +1,33 @@
+𝐌𝐮𝐬𝐭 𝐓𝐫𝐲: Amazon (Hard Level) 
+hashtag
+#SQL Interview Question — Solution
+
+Write a query to find the Market Share at the Product Brand level for each Territory, for Time Period Q4-2021. Market Share is the number of Products of a certain Product Brand brand sold in a territory, divided by the total number of Products sold in this Territory.
+
+Output the ID of the Territory, name of the Product Brand and the corresponding Market Share in percentages. Only include these Product Brands that had at least one sale in a given territory.
+
+🌀By solving this, you'll learn how to use Mutiple Cte, Windows Function, Group by, Join. Give it a try and share the output! 👇
+
+𝐒𝐜𝐡𝐞𝐦𝐚 𝐚𝐧𝐝 𝐃𝐚𝐭𝐚𝐬𝐞𝐭
+CREATE TABLE fct_customer_sales (cust_id VARCHAR(50), prod_sku_id VARCHAR(50), order_date DATETIME, order_value BIGINT, order_id VARCHAR(50));
+
+CREATE TABLE map_customer_territory (cust_id VARCHAR(50), territory_id VARCHAR(50));
+
+CREATE TABLE dim_product (prod_sku_id VARCHAR(50), prod_sku_name VARCHAR(255), prod_brand VARCHAR(100), market_name VARCHAR(100));
+
+INSERT INTO fct_customer_sales (cust_id, prod_sku_id, order_date, order_value, order_id) VALUES ('C001', 'P001', '2021-10-15', 100, 'O1001'), ('C002', 'P002', '2021-11-20', 200, 'O1002'), ('C003', 'P003', '2021-12-05', 150, 'O1003'), ('C001', 'P002', '2021-12-10', 300, 'O1004'), ('C002', 'P001', '2021-11-18', 250, 'O1005');
+
+INSERT INTO map_customer_territory (cust_id, territory_id) VALUES ('C001', 'T001'), ('C002', 'T002'), ('C003', 'T001');
+
+INSERT INTO dim_product (prod_sku_id, prod_sku_name, prod_brand, market_name) VALUES ('P001', 'Product A', 'Brand X', 'Market 1'), ('P002', 'Product B', 'Brand Y', 'Market 2'), ('P003', 'Product C', 'Brand X', 'Market 1');
+---------
+
+𝐄𝐱𝐩𝐥𝐚𝐧𝐚𝐭𝐢𝐨𝐧 𝐭𝐨 𝐒𝐨𝐥𝐯𝐞 𝐐𝐮𝐞𝐫𝐲
+1. sales_data CTE: Joins fct_customer_sales, map_customer_territory, and dim_product to get territory_id and prod_brand. Filters sales for Q4-2021 ('2021-10-01' to '2021-12-31'). Groups by territory and product brand to count the number of products sold.
+
+2. total_sales_per_territory CTE: Computes the total product sales per territory. 
+Final Selection: Calculates Market Share (%) as: brand_sales/total_sales_in_the_territory×100
+
+𝐈'𝗺 𝐩𝐨𝐬𝐭𝗶𝗻𝗴 𝐨𝐧𝐞 𝐒𝐐𝐋 𝐢𝐧𝐭𝐞𝐫𝐯𝐢𝐞𝐰 𝐪𝐮𝐞𝐬𝐭𝐢𝐨𝐧 𝐞𝐯𝐞𝐫𝐲 𝐝𝐚𝐲!
+▪️ 72 SQL Interview Problems to Solve: https://lnkd.in/gKnSJ2Hu
+

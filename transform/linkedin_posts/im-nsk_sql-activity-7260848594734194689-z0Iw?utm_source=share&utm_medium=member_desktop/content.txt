@@ -1,0 +1,33 @@
+𝐌𝐮𝐬𝐭 𝐓𝐫𝐲: Apple, Microsoft, Dell (Easy Level) 
+hashtag
+#SQL Interview Question — Solution
+
+Write a query that returns the number of unique users per client per month
+
+🔍Easiest one, but it's been asked by multiple top companies. Give it a try and share your output! 👇
+
+𝐒𝐜𝐡𝐞𝐦𝐚 𝐚𝐧𝐝 𝐃𝐚𝐭𝐚𝐬𝐞𝐭:
+CREATE TABLE fact_events (id INT PRIMARY KEY,time_id DATETIME,user_id VARCHAR(20),customer_id VARCHAR(50),client_id VARCHAR(20),event_type VARCHAR(50),event_id INT);
+
+INSERT INTO fact_events (id, time_id, user_id, customer_id, client_id, event_type, event_id) VALUES(1, '2020-02-28', '3668-QPYBK', 'Sendit', 'desktop', 'message sent', 3),(2, '2020-02-28', '7892-POOKP', 'Connectix', 'mobile', 'file received', 2),(3, '2020-04-03', '9763-GRSKD', 'Zoomit', 'desktop', 'video call received', 7),(4, '2020-04-02', '9763-GRSKD', 'Connectix', 'desktop', 'video call received', 7),(5, '2020-02-06', '9237-HQITU', 'Sendit', 'desktop', 'video call received', 7),(6, '2020-02-27', '8191-XWSZG', 'Connectix', 'desktop', 'file received', 2),(7, '2020-04-03', '9237-HQITU', 'Connectix', 'desktop', 'video call received', 7),(8, '2020-03-01', '9237-HQITU', 'Connectix', 'mobile', 'message received', 4),(9, '2020-04-02', '4190-MFLUW', 'Connectix', 'mobile', 'video call received', 7),(10, '2020-04-21', '9763-GRSKD', 'Sendit', 'desktop', 'file received', 2);
+-----------
+
+I have provided an explanation and query, but I encourage you to try solving it first. Later, you can check the query for reference.
+
+𝐄𝐱𝐩𝐥𝐚𝐧𝐚𝐭𝐢𝐨𝐧 𝐭𝐨 𝐒𝐨𝐥𝐯𝐞 𝐐𝐮𝐞𝐫𝐲
+1. FORMAT(time_id, 'yyyy-MM') AS month_year: Extracts the month and year from time_id in the format yyyy-MM, which allows grouping by month.
+
+2. COUNT(DISTINCT user_id): Counts unique users by counting distinct user_ids within each group.
+
+3. GROUP BY client_id, month_year: Groups the results by client_id and the extracted month and year.
+
+4. ORDER BY client_id, month_year: Orders the output by client_id and month-year for better readability.
+
+🔥 𝐈'𝗺 𝐩𝐨𝐬𝐭𝗶𝗻𝗴 𝐨𝐧𝐞 𝐒𝐐𝐋 𝐢𝐧𝐭𝐞𝐫𝐯𝐢𝐞𝐰 𝐪𝐮𝐞𝐬𝐭𝐢𝐨𝐧 𝐞𝐯𝐞𝐫𝐲 𝐝𝐚𝐲!
+▪️ List of Previous SQL Interview Questions to solve: 
+https://lnkd.in/g6nF5_Rx
+https://lnkd.in/gWmdGriC
+
+Join me for a live data session update, job opportunities, and post updates: https://lnkd.in/giE3e9yH
+
+🤝Stay active Nishant Kumar Stay consistent
